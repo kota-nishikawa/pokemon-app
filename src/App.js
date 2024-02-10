@@ -4,7 +4,11 @@ import './App.css';
 import { logDOM } from '@testing-library/react';
 import { Card } from './components/Card/Card.js';
 import { Navbar } from './components/Navbar/Navbar.js';
+<<<<<<< HEAD
 import {  loadPokemon }  from 'src/features/Card/hooks/index.ts';
+=======
+
+>>>>>>> origin/master
 function App() {
   const initialURL="https://pokeapi.co/api/v2/pokemon/";
   const [loading, setLoading]=useState(true);
