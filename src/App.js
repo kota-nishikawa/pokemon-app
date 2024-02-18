@@ -5,7 +5,6 @@ import { Card } from './components/Card/Card.js';
 import { Navbar } from './components/Navbar/Navbar.js';
 
 import { usePokemonData } from './features/Card/hooks';
-import Modal from './components/Modal';
 
 function App() {
   const initialURL="https://pokeapi.co/api/v2/pokemon/";
@@ -13,7 +12,6 @@ function App() {
   const [nextURL,setNextURL]=useState("")
   const [prevURL,setPrevURL]=useState("")
   const { pokemonData, loadPokemon } = usePokemonData()
-  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(()=>{
     const fetchPokemonData=async()=>{
@@ -57,7 +55,7 @@ function App() {
         <>
         <div className="pokemonCardContainer" >
           {pokemonData.map(( pokemon,i ) => {
-            return <Card key={i} pokemon={pokemon} onClick={() => setIsOpen(true)}/>
+            return <Card key={i} pokemon={pokemon}/>
           })}
 
         </div>
@@ -65,9 +63,7 @@ function App() {
         <button onClick={handlePrevPage}>前へ</button>
         <button onClick={handleNextPage}>次へ</button>
         </div>
-        <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
-          <p>モーダルの中身</p>
-        </Modal>
+
         </>
       }
     </div>
