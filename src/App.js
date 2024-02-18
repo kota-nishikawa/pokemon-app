@@ -44,6 +44,8 @@ function App() {
     setLoading(false)
   }
 
+  console.log(pokemonData)
+
   return (
     <>
     <Navbar />

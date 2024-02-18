@@ -3,16 +3,17 @@ import "./Card.css";
 import Modal from '../Modal';
 
 export const Card = ({pokemon }) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpenFlag, setIsOpenFlag] = useState(false);
   function handleCard (openFlag){
+    console.log(openFlag)
 
-    setIsOpen(setIsOpen)
+    setIsOpenFlag(openFlag)
 
-    }
+  }
   return (
     <>
-    <div className="card"  onClick={() => handleCard(true)}>
-      <div className="cardImg">
+    <div className="card p-4"  onClick={() => handleCard(true)}>
+      <div className="cardImg flex justify-center">
         <img src={pokemon.sprites.front_default} alt="" />
       </div>
       <h3 className="cardName">{pokemon.name}</h3>
@@ -36,10 +37,12 @@ export const Card = ({pokemon }) => {
           <p className="title">アビリティ：{pokemon.abilities[0].ability.name}</p>
         </div>
       </div>
-    </div>
-        <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
-        <p>モーダルの中身</p>
+      console.log(pokemon.sprites)
+      <Modal isOpenFlag={isOpenFlag} abilities={pokemon.abilities} sprites={pokemon.sprites} onClose={() => setIsOpenFlag(false)}>
+
       </Modal>
+    </div>
+
       </>
   )
 }
