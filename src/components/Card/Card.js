@@ -5,8 +5,6 @@ import Modal from '../Modal';
 export const Card = ({pokemon }) => {
   const [isOpenFlag, setIsOpenFlag] = useState(false);
   function handleCard (openFlag){
-    console.log(openFlag)
-
     setIsOpenFlag(openFlag)
 
   }
@@ -37,7 +35,6 @@ export const Card = ({pokemon }) => {
           <p className="title">アビリティ：{pokemon.abilities[0].ability.name}</p>
         </div>
       </div>
-      console.log(pokemon.sprites)
       <Modal isOpenFlag={isOpenFlag} abilities={pokemon.abilities} sprites={pokemon.sprites} onClose={() => setIsOpenFlag(false)}>
 
       </Modal>
