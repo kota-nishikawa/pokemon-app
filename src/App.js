@@ -1,16 +1,17 @@
 import { useEffect, useState } from 'react';
-import { getAllPokemon , getPokemon } from './utils/pokemon.js';
+import { getAllPokemon } from './utils/pokemon.js';
 import './App.css';
-import { logDOM } from '@testing-library/react';
 import { Card } from './components/Card/Card.js';
 import { Navbar } from './components/Navbar/Navbar.js';
+
+import { usePokemonData } from './features/Card/hooks';
 
 function App() {
   const initialURL="https://pokeapi.co/api/v2/pokemon/";
   const [loading, setLoading]=useState(true);
-  const [pokemonData,setPokemonData] =useState([])
   const [nextURL,setNextURL]=useState("")
   const [prevURL,setPrevURL]=useState("")
+  const { pokemonData, loadPokemon } = usePokemonData()
 
   useEffect(()=>{
     const fetchPokemonData=async()=>{
@@ -20,19 +21,10 @@ function App() {
       setNextURL(res.next)
       setPrevURL(res.previous)
       setLoading(false)
-    }
+    };
     fetchPokemonData();
-  },[])
+  },[loadPokemon]);
 
-  const loadPokemon = async (data) =>{
-    let _pokemonData = await Promise.all(
-       data.map((pokemon) => {
-          let pokemonRecord = getPokemon(pokemon.url);
-          return pokemonRecord;
-       })
-    )
-    setPokemonData(_pokemonData)
-  };
 
   const handleNextPage = async ()=>{
     setLoading(true)
@@ -61,10 +53,11 @@ function App() {
         </h1>
       ) :
         <>
-        <div className="pokemonCardContainer">
+        <div className="pokemonCardContainer" >
           {pokemonData.map(( pokemon,i ) => {
-            return <Card key={i} pokemon={pokemon} />
+            return <Card key={i} pokemon={pokemon}/>
           })}
+
         </div>
         <div className="btn">
         <button onClick={handlePrevPage}>前へ</button>

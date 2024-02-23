@@ -1,17 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import "./Card.css";
-import Modal from '../Modal';
 
-export const Card = ({pokemon }) => {
-  const [isOpenFlag, setIsOpenFlag] = useState(false);
-  function handleCard (openFlag){
-    setIsOpenFlag(openFlag)
-
-  }
+export const Card = ({pokemon}) => {
   return (
-    <>
-    <div className="card p-4"  onClick={() => handleCard(true)}>
-      <div className="cardImg flex justify-center">
+    <div className="card">
+      <div className="cardImg">
         <img src={pokemon.sprites.front_default} alt="" />
       </div>
       <h3 className="cardName">{pokemon.name}</h3>
@@ -35,12 +28,7 @@ export const Card = ({pokemon }) => {
           <p className="title">アビリティ：{pokemon.abilities[0].ability.name}</p>
         </div>
       </div>
-      <Modal isOpenFlag={isOpenFlag} abilities={pokemon.abilities} sprites={pokemon.sprites} onClose={() => setIsOpenFlag(false)}>
-
-      </Modal>
     </div>
-
-      </>
   )
 }
 
