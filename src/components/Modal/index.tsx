@@ -52,7 +52,9 @@ const Modal = ({ isOpenFlag, abilities,sprites,children, onClose }: Props) => {
                 <div className="mt-2 justify-center flex">
                 <Dialog.Panel  className="px-4 py-3 sm:flex sm:flex-row-reverse  w-full  flex justify-center flex-wrap">
                   {Object.keys(abilities).map((key: any) => {
-                      if(key == 0) return
+                      if(key == 0) {
+                        return;
+                       }
                       const ability = abilities[key];
                       return ability.ability.name && (<p className='w-full'>アビリティ：{ability.ability.name}</p>)
                     })}
